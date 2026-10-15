@@ -1,0 +1,14 @@
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.*
+secrets/
+dist/
+*.zip
+.DS_Store
+Thumbs.db
+**/packs/**/LOCK
+**/packs/**/LOG
+**/packs/**/LOG.old

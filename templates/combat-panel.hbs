@@ -1,0 +1,38 @@
+{{#if visible}}
+<div class="fuzp-panel-shell {{#if collapsed}}is-compact{{/if}}" {{#if collapsed}}data-fuzp-drag-handle{{/if}}>
+  {{#if collapsed}}
+  <button type="button" class="fuzp-compact-clock {{#if full}}is-full{{/if}}" data-fuzp-toggle data-fuzp-drag-handle data-tooltip="展开；拖动可改变位置" aria-label="展开零界力量面板，命刻 {{progress.current}} / {{progress.max}}">
+    <span class="fuzp-compact-dial" style="--segments:{{progress.max}}" data-segments="{{progress.max}}" aria-hidden="true">
+      <span class="fuzp-compact-dial-foreground"></span>
+      {{#each segments}}
+      <span class="fuzp-compact-dial-slice {{#if filled}}filled{{/if}}" style="--index:{{id}}"></span>
+      <span class="fuzp-compact-dial-divider" style="--index:{{id}}"></span>
+      {{/each}}
+    </span>
+  </button>
+  <button type="button" class="fuzp-compact-action" data-action="manual" data-tooltip="手动触发零界条件" aria-label="手动触发零界条件"><i class="fa-solid fa-plus"></i></button>
+  <button type="button" class="fuzp-compact-action release {{#if full}}is-full{{/if}}" data-action="release" data-tooltip="{{releaseHint}}" aria-label="释放零界力量" {{#unless canRelease}}disabled{{/unless}}><i class="fa-solid fa-check"></i></button>
+  {{else}}
+  <div class="fuzp-panel-heading">
+    <img src="{{actor.img}}" alt="{{actor.name}}">
+    <div class="fuzp-panel-title" data-fuzp-drag-handle data-tooltip="拖动可改变位置"><strong>{{actor.name}}</strong><small>{{item.name}}</small></div>
+    <button type="button" data-fuzp-toggle data-tooltip="缩小面板"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
+    <button type="button" data-action="configure" data-tooltip="配置零界力量"><i class="fa-solid fa-gear"></i></button>
+  </div>
+  <div class="fuzp-panel-clock" aria-label="零界命刻 {{progress.current}} / {{progress.max}}">
+    {{#each segments}}<span class="{{#if filled}}filled{{/if}}"></span>{{/each}}
+    <b>{{progress.current}} / {{progress.max}}</b>
+  </div>
+  <div class="fuzp-panel-meta">
+    <span><i class="fa-solid fa-bullseye"></i> {{#if condition}}{{condition.name}}{{else}}尚未选择条件{{/if}}</span>
+    <span><i class="fa-solid fa-sparkles"></i> {{#if effect}}{{effect.name}}{{else}}{{#if linked}}联结之力{{else}}尚未选择效果{{/if}}{{/if}}</span>
+  </div>
+  {{#if linked}}<div class="fuzp-links">{{#each links}}<small>{{partnerName}} · {{effectName}}</small>{{/each}}</div>{{/if}}
+  <div class="fuzp-panel-actions">
+    <button type="button" data-action="manual"><i class="fa-solid fa-hand"></i><span>手动触发条件</span></button>
+    {{#if canAwaken}}<button type="button" class="awaken" data-action="awaken"><i class="fa-solid fa-star"></i><span>觉醒力量</span></button>{{/if}}
+    <button type="button" class="release {{#if full}}is-full{{/if}}" data-action="release" data-tooltip="{{releaseHint}}" {{#unless canRelease}}disabled{{/unless}}><i class="fa-solid fa-burst"></i><span>释放零界力量</span></button>
+  </div>
+  {{/if}}
+</div>
+{{/if}}

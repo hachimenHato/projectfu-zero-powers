@@ -1,0 +1,14 @@
+{
+  "FUZP.Settings.Automation": "启用零界力量自动化",
+  "FUZP.Settings.AutomationHint": "关闭后停用创建器、监测、战斗控制条和效果执行，只保留合集与拖放填充。",
+  "FUZP.Settings.Variant": "零界力量规则模式",
+  "FUZP.Settings.VariantHint": "标准、觉醒之力、联结之力，或两项变体结合。",
+  "FUZP.Settings.ShowPanel": "显示战斗零界力量控制条",
+  "FUZP.Settings.ShowPanelHint": "在冲突开始后，为当前可控制的玩家角色显示常驻小界面。",
+  "FUZP.Settings.Clear": "冲突开始与结束时清空命刻",
+  "FUZP.Settings.ClearHint": "严格执行规则中的场景清空要求。",
+  "FUZP.Variant.Standard": "标准规则",
+  "FUZP.Variant.Awakening": "觉醒之力",
+  "FUZP.Variant.Linked": "联结之力",
+  "FUZP.Variant.Combined": "觉醒之力＋联结之力"
+}

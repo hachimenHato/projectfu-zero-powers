@@ -1,0 +1,52 @@
+name: Release FVTT module
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fvtt-release-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and build release
+        shell: bash
+        env:
+          EXPECT_REPOSITORY: ${{ github.repository }}
+        run: |
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            python tools/package_release.py --expect-repository "$EXPECT_REPOSITORY" --expect-tag "$GITHUB_REF_NAME"
+          else
+            python tools/package_release.py --expect-repository "$EXPECT_REPOSITORY"
+          fi
+      - name: Publish versioned release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          module_id="$(node -p 'JSON.parse(require("fs").readFileSync("module.json","utf8")).id')"
+          version="$(node -p 'JSON.parse(require("fs").readFileSync("module.json","utf8")).version')"
+          tag="v$version"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $tag already exists. Increment module.json version instead of replacing a published version."
+            exit 1
+          fi
+          gh release create "$tag" \
+            "dist/module.json" "dist/$module_id.zip" "dist/SHA256SUMS.txt" \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "$module_id v$version" --generate-notes --latest

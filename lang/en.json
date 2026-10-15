@@ -1,0 +1,14 @@
+{
+  "FUZP.Settings.Automation": "Enable Zero Power automation",
+  "FUZP.Settings.AutomationHint": "Disable the creator, monitors, combat panel, and effect execution while retaining compendiums and drag-and-drop filling.",
+  "FUZP.Settings.Variant": "Zero Power rules variant",
+  "FUZP.Settings.VariantHint": "Standard, Awakened Power, Linked Power, or both variants combined.",
+  "FUZP.Settings.ShowPanel": "Show the Zero Power combat panel",
+  "FUZP.Settings.ShowPanelHint": "Show the compact controls for an owned player character during conflicts.",
+  "FUZP.Settings.Clear": "Clear clocks at conflict start and end",
+  "FUZP.Settings.ClearHint": "Enforce the scene cleanup rule.",
+  "FUZP.Variant.Standard": "Standard",
+  "FUZP.Variant.Awakening": "Awakened Power",
+  "FUZP.Variant.Linked": "Linked Power",
+  "FUZP.Variant.Combined": "Awakened + Linked"
+}

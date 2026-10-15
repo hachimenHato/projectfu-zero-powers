@@ -1,0 +1,10 @@
+{
+  "name": "projectfu-zero-powers",
+  "version": "1.0.5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check-syntax.mjs"
+  }
+}
